@@ -4,6 +4,7 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { ContactInfo } from './contact-info.entity';
 import { Employee } from './employee.entity';
+import { Meeting } from './meeting.entity';
 import { Task } from './task.entity';
 
 @Module({
@@ -15,9 +16,10 @@ import { Task } from './task.entity';
       username: 'postgres',
       password: 'postgres',
       database: 'test',
-      entities: [Employee, ContactInfo, Task],
+      entities: ['dist/**/*.entity.js'],
       synchronize: true,
-    })
+    }),
+    TypeOrmModule.forFeature([Employee, ContactInfo, Meeting, Task])
   ],
   controllers: [AppController],
   providers: [AppService],
